@@ -370,20 +370,17 @@ install:
     - ${CMDPREFIX} ${python_command} -m pip install --upgrade pip
     - if [[ $TRAVIS_PYTHON_VERSION == pypy3.5-6.0 ]]; then ${CMDPREFIX} ${pip_command} install "pytest-cov==2.6.0"; fi
     # mypy does not run on pypy 3.5 - we only do mypy on python 3.6
-    - if [[ "${mypy_static_typecheck}" == "True" ]]; then ${CMDPREFIX} ${pip_command} install mypy; fi
-    - if [[ "${build_docs}" == "True" ]]; then ${CMDPREFIX} ${pip_command} install rst_include; fi
-    - ./lib_bash/lib_helpers.sh banner "install codecov"
-    - ${CMDPREFIX} ${pip_command} install codecov pytest pytest-pep8 pytest-cov dill
-    - ./lib_bash/lib_helpers.sh banner "install pytest"
-    - ${CMDPREFIX} ${pip_command} install pytest pytest-pep8 pytest-cov
-    - ./lib_bash/lib_helpers.sh banner "install dill"
-    - ${CMDPREFIX} ${pip_command} install dill
+    - if [[ "${mypy_static_typecheck}" == "True" ]]; then ./lib_bash/lib_helpers.sh banner "install mypy" && ${CMDPREFIX} ${pip_command} install mypy; fi
+    - if [[ "${build_docs}" == "True" ]]; then ./lib_bash/lib_helpers.sh banner "install rst_include (Building Docs)" ${CMDPREFIX} ${pip_command} install rst_include; fi
+    - ./lib_bash/lib_helpers.sh banner "install codecov" && ${CMDPREFIX} ${pip_command} install codecov
+    - ./lib_bash/lib_helpers.sh banner "install pytest" && ${CMDPREFIX} ${pip_command} install pytest pytest-pep8 pytest-cov
+    - ./lib_bash/lib_helpers.sh banner "install dill" && ${CMDPREFIX} ${pip_command} install dill
     - if [[ -f setup.py ]]; then export setup_py_found="True" && ./lib_bash/lib_helpers.sh banner "setup.py found" ; else ./lib_bash/lib_helpers.sh banner_warning "*** no setup.py found, nothing to test" ; fi
     - if [[ "${setup_py_found}" == "True" ]]; then ./lib_bash/lib_helpers.sh banner "Installing Application" && ${CMDPREFIX} ${pip_command} install -e . ; fi
 
 script:
-    - if [[ "${setup_py_found}" == "True" ]]; then ./lib_bash/lib_helpers.sh banner "running setup.py --install-option test" && ${CMDPREFIX} ${pip_command} install ${github_master} --install-option test ; else ./lib_bash/lib_helpers.sh banner_warning "no setup.py found, no setup.py --install-option test" ; fi
-    - if [[ "${setup_py_found}" == "True" ]]; then ./lib_bash/lib_helpers.sh banner "running pytest" && ${CMDPREFIX} ${python_command} -m pytest --pep8 --cov ; else ./lib_bash/lib_helpers.sh banner_warning "no setup.py found, no pytest to run" ; fi
+    - if [[ "${setup_py_found}" == "True" ]]; then ./lib_bash/lib_helpers.sh banner "running setup.py --install-option test" && ${CMDPREFIX} ${pip_command} install ${github_master} --install-option test ; fi
+    - if [[ "${setup_py_found}" == "True" ]]; then ./lib_bash/lib_helpers.sh banner "running pytest" && ${CMDPREFIX} ${python_command} -m pytest --pep8 --cov ; fi
     - if [[ "${mypy_static_typecheck}" == "True" ]]; then ./lib_bash/lib_helpers.sh banner "running mypy static typechecks" && ${CMDPREFIX} ${python_command} -m mypy -p ${REPOSITORY_NAME}; else ./lib_bash/lib_helpers.sh banner_warning "static typechecking disabled on this build" ;  fi
     - if [[ -f build_docs.py ]] && [[ "${build_docs}" == "True" ]]; then ./lib_bash/lib_helpers.sh banner "Building Docs" && ${CMDPREFIX} ${python_command} build_docs.py ${TRAVIS_REPO_SLUG}; else ./lib_bash/lib_helpers.sh banner_warning "Builing Docs disabled on this build" ;  fi
 
