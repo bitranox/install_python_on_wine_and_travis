@@ -1,7 +1,7 @@
 #!/bin/bash
 function include_dependencies {
     local my_dir="$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )"  # this gives the full path, even for sourced scripts
-    chmod +x "${my_dir}"/lib_bash/*.sh
+    chmod +x "${my_dir}/lib_bash/*.sh"
     source "${my_dir}/lib_bash/lib_color.sh"
     source "${my_dir}/lib_bash/lib_retry.sh"
     source "${my_dir}/lib_bash/lib_wine_install.sh"
@@ -37,7 +37,7 @@ retry winetricks -q windowscodecs
 
 clr_bold clr_bold clr_green "******************************************************************************************************************"
 clr_bold clr_green "install msxml3"
-if [[ ${wine_version_number} == "wine-4.8" ]]; then clr_bold clr_red "known regression, msxml3 does not work on wine-4.8" ; else retry winetricks -q msxml3 ; fi
+retry winetricks -q msxml3
 clr_bold clr_bold clr_green "******************************************************************************************************************"
 clr_bold clr_green "install msxml6"
 retry winetricks -q msxml6
