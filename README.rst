@@ -63,10 +63,10 @@ Install WINE
 .. code-block:: bash
 
 
-    # set the wine_version from Your command prompt
-    export wine_version="stable"     # for wine version stable, somehow old
-    export wine_version="devel"      # for wine version development, recommended
-    export wine_version="staging"    # for wine version staging, the newest version, might be unstable
+    # set the wine_release from Your command prompt
+    export wine_release="stable"     # for wine release stable, somehow old
+    export wine_release="devel"      # for wine release development, recommended
+    export wine_release="staging"    # for wine release staging, the newest version, might be unstable
 
     # next step will install wine - after that You will be able to set up 32 and 64 Bit Wine Machines
     install_wine.sh
