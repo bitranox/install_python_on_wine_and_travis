@@ -14,9 +14,9 @@ function update_lib_bash_wine_if_exist {
         cd lib_bash_wine
         local git_remote_hash=$(sudo git --no-pager ls-remote --quiet | grep HEAD | awk '{print $1;}' )
         local git_local_hash=$(sudo git --no-pager log --decorate=short --pretty=oneline -n1 | grep HEAD | awk '{print $1;}' )
-        sudo git fetch --all > /dev/null 2>&1
-        sudo git reset --hard origin/master > /dev/null 2>&1
-        sudo chmod -R +x ./*.sh > /dev/null 2>&1
+        sudo git fetch --all
+        sudo git reset --hard origin/master
+        sudo chmod -R +x ./*.sh
         cd ..
     fi
 }

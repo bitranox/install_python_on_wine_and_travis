@@ -14,9 +14,9 @@ function update_lib_bash_if_exist {
         cd lib_bash
         local git_remote_hash=$(git --no-pager ls-remote --quiet | grep HEAD | awk '{print $1;}' )
         local git_local_hash=$(git --no-pager log --decorate=short --pretty=oneline -n1 | grep HEAD | awk '{print $1;}' )
-        sudo git fetch --all > /dev/null 2>&1
-        git reset --hard origin/master > /dev/null 2>&1
-        sudo chmod -R +x ./*.sh > /dev/null 2>&1
+        sudo git fetch --all
+        git reset --hard origin/master
+        sudo chmod -R +x ./*.sh
         cd ..
     fi
 }
