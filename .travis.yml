@@ -47,8 +47,8 @@ matrix:
       before_install:
           - sudo chmod -R +x ./*.sh
           - ./install_lib_bash.sh
-        - ./lib_bash/lib_retry.sh retry choco install python3
-        - export PATH="/c/Python37:/c/Python37/Scripts:$PATH"
+          - ./lib_bash/lib_retry.sh retry choco install python3
+          - export PATH="/c/Python37:/c/Python37/Scripts:$PATH"
 
     - os: linux
       language: python
