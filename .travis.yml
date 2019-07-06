@@ -371,7 +371,7 @@ install:
     - if [[ $TRAVIS_PYTHON_VERSION == pypy3.5-6.0 ]]; then ${CMDPREFIX} ${pip_command} install "pytest-cov==2.6.0"; fi
     # mypy does not run on pypy 3.5 - we only do mypy on python 3.6
     - if [[ "${mypy_static_typecheck}" == "True" ]]; then ./lib_bash/lib_helpers.sh banner "install mypy" && ${CMDPREFIX} ${pip_command} install mypy; fi
-    - if [[ "${build_docs}" == "True" ]]; then ./lib_bash/lib_helpers.sh banner "install rst_include (Building Docs)" ${CMDPREFIX} ${pip_command} install rst_include; fi
+    - if [[ "${build_docs}" == "True" ]]; then ./lib_bash/lib_helpers.sh banner "install rst_include (Building Docs)" && ${CMDPREFIX} ${pip_command} install rst_include; fi
     - ./lib_bash/lib_helpers.sh banner "install codecov" && ${CMDPREFIX} ${pip_command} install codecov
     - ./lib_bash/lib_helpers.sh banner "install pytest" && ${CMDPREFIX} ${pip_command} install pytest pytest-pep8 pytest-cov
     - ./lib_bash/lib_helpers.sh banner "install dill" && ${CMDPREFIX} ${pip_command} install dill
