@@ -1,5 +1,39 @@
 #!/bin/bash
 
+
+function get_sudo_exists {
+    # we need this for travis - there is no sudo command !
+    if [[ -f /usr/bin/sudo ]]; then
+        echo "True"
+    else
+        echo "False"
+    fi
+}
+
+function get_sudo_command {
+    # we need this for travis - there is no sudo command !
+    if [[ $(get_sudo_exists) == "True" ]]; then
+        local sudo_command="sudo"
+        echo ${sudo_command}
+    else
+        local sudo_command=""
+        echo ${sudo_command}
+    fi
+}
+
+function include_dependencies {
+    local my_dir="$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )"  # this gives the full path, even for sourced scripts
+    local sudo_command=$(get_sudo_command)
+    ${sudo_command} chmod -R +x "${my_dir}"/*.sh
+    source "${my_dir}/install_lib_bash.sh"
+    source /usr/lib/lib_bash/lib_color.sh
+    source /usr/lib/lib_bash/lib_retry.sh
+    source /usr/lib/lib_bash/lib_helpers.sh
+}
+
+include_dependencies  # we need to do that via a function to have local scope of my_dir
+
+
 function install_lib_bash_wine_if_not_exist {
     local my_dir="$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )"  # this gives the full path, even for sourced scripts
     if [[ ! -d "${my_dir}/lib_bash_wine" ]]; then
