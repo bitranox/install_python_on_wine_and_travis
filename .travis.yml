@@ -356,8 +356,8 @@ matrix:
 
 install:
     - chmod -R +x ./*.sh             # make shellscripts executable
-    - ./install_or_update_lib_bash.sh
-    - ./install_or_update_lib_bash_wine.sh
+    - bash ./install_or_update_lib_bash.sh
+    - bash ./install_or_update_lib_bash_wine.sh
     - export lib_bash_color="/usr/lib/lib_bash/lib_color.sh"
     - export lib_bash_banner="/usr/lib/lib_bash/lib_helpers.sh banner"
     - export lib_bash_banner_warning="/usr/lib/lib_bash/lib_helpers.sh banner_warning"
