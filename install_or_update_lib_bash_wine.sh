@@ -51,8 +51,8 @@ function set_lib_bash_wine_permissions {
     local sudo_command=$(get_sudo_command)
     ${sudo_command} chmod -R 0755 /usr/lib/lib_bash_wine
     ${sudo_command} chmod -R +x /usr/lib/lib_bash_wine/*.sh
-    ${sudo_command} chown -R root /usr/lib/lib_bash_wine || ${sudo_command} chown -R ${USER} /usr/lib/lib_bash_wine  # there is no user root on travis
-    ${sudo_command} chgrp -R root /usr/lib/lib_bash_wine || ${sudo_command} chgrp -R ${USER} /usr/lib/lib_bash_wine  # there is no user root on travis
+    ${sudo_command} chown -R root /usr/lib/lib_bash_wine || ${sudo_command} chown -R ${USER} /usr/lib/lib_bash_wine || clr_bold clr_red "giving up set owner" # there is no user root on travis  # there is no user root on travis
+    ${sudo_command} chgrp -R root /usr/lib/lib_bash_wine || ${sudo_command} chgrp -R ${USER} /usr/lib/lib_bash_wine || clr_bold clr_red "giving up set group" # there is no user root on travis # there is no user root on travis
 }
 
 function is_lib_bash_wine_installed {
