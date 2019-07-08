@@ -32,8 +32,8 @@ matrix:
       filter_secrets: false
       before_install:
           - chmod -R +x ./*.sh
-          - ./install_lib_bash.sh
-          - ./lib_bash/lib_retry.sh retry choco install python2
+          - ./install_or_update_lib_bash.sh
+          - /usr/lib/lib_bash/lib_retry.sh retry choco install python2
           - export PATH="/c/Python27:/c/Python27/Scripts:$PATH"
 
     - os: windows
@@ -46,8 +46,8 @@ matrix:
       filter_secrets: false
       before_install:
           - chmod -R +x ./*.sh
-          - ./install_lib_bash.sh
-          - ./lib_bash/lib_retry.sh retry choco install python3
+          - ./install_or_update_lib_bash.sh
+          - /usr/lib/lib_bash/lib_retry.sh retry choco install python3
           - export PATH="/c/Python37:/c/Python37/Scripts:$PATH"
 
     - os: linux
