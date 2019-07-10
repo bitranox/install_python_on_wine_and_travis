@@ -31,9 +31,9 @@ matrix:
       # this can be a security issue, check that You dont leak secrets here !
       filter_secrets: false
       before_install:
-          - git clone https://github.com/bitranox/lib_bash.git /usr/lib/lib_bash
-          - chmod -R 0755 /usr/lib/lib_bash
-          - chmod -R +x /usr/lib/lib_bash/*.sh
+          - sudo git clone https://github.com/bitranox/lib_bash.git /usr/lib/lib_bash
+          - sudo chmod -R 0755 /usr/lib/lib_bash
+          - sudo chmod -R +x /usr/lib/lib_bash/*.sh
           - /usr/lib/lib_bash/lib_retry.sh retry choco install python2
           - export PATH="/c/Python27:/c/Python27/Scripts:$PATH"
 
@@ -46,9 +46,9 @@ matrix:
       # this can be a security issue, check that You dont leak secrets here !
       filter_secrets: false
       before_install:
-          - git clone https://github.com/bitranox/lib_bash.git /usr/lib/lib_bash
-          - chmod -R 0755 /usr/lib/lib_bash
-          - chmod -R +x /usr/lib/lib_bash/*.sh
+          - sudo git clone https://github.com/bitranox/lib_bash.git /usr/lib/lib_bash
+          - sudo chmod -R 0755 /usr/lib/lib_bash
+          - sudo chmod -R +x /usr/lib/lib_bash/*.sh
           - /usr/lib/lib_bash/lib_retry.sh retry choco install python3
           - export PATH="/c/Python37:/c/Python37/Scripts:$PATH"
 
@@ -357,10 +357,10 @@ matrix:
 
 
 install:
-    - git clone https://github.com/bitranox/lib_bash_wine.git /usr/lib/lib_bash_wine
-    - chmod -R 0755 /usr/lib/lib_bash_wine
-    - ${sudo_command} chmod -R +x /usr/lib/lib_bash_wine/*.sh
-    - /usr/lib/lib_bash_wine/install_or_update_lib_bash_wine.sh
+    - sudo git clone https://github.com/bitranox/lib_bash_wine.git /usr/lib/lib_bash_wine
+    - sudo chmod -R 0755 /usr/lib/lib_bash_wine
+    - sudo chmod -R +x /usr/lib/lib_bash_wine/*.sh
+    - sudo /usr/lib/lib_bash_wine/install_or_update_lib_bash_wine.sh
     - export lib_bash_color="/usr/lib/lib_bash/lib_color.sh"
     - export lib_bash_banner="/usr/lib/lib_bash/lib_helpers.sh banner"
     - export lib_bash_banner_warning="/usr/lib/lib_bash/lib_helpers.sh banner_warning"
