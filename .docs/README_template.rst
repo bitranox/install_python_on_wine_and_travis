@@ -9,7 +9,9 @@ Install wine / python on Linux and/or Travis
 
 - Scripts and travis.yml file to install Git on Wine 32 Bit or 64 Bit
 
-- Scripts and travis.yml file to run pytest ond codecov on python on wine
+- Scripts and travis.yml file to install Powershell Core on Wine 32 Bit or 64 Bit
+
+- Scripts and travis.yml file to run pytest and codecov on python on wine
 
 - travis .yml to install Windows Python 2.7 and 3.7 builds
 
@@ -28,6 +30,7 @@ Install wine / python on Linux and/or Travis
 - `Install latest Python 2.7 on WINE`_
 - `Install latest Python 3.7 on WINE`_
 - `Install GIT on WINE`_
+- `Install Powershell Core on WINE`_
 - `Running Commands on Wine`_
 - `Acknowledgements`_
 - `Contribute`_
@@ -185,6 +188,33 @@ Install GIT on WINE
     export WINEARCH="win64"
     # next step is to install Git 64 Bit on the Wine Machine
     /usr/lib/lib_bash_wine/004_001_install_wine_git_portable.sh
+
+
+Install Powershell Core on WINE
+===============================
+
+
+.. code-block:: bash
+
+    #############################################
+    # install Powershell Core 32 Bit Version on Machine 1
+    #############################################
+    # set Wine Prefix for Machine 1 (32 Bit)
+    export WINEPREFIX=${HOME}/wine/wine32_machine_01
+    # set Architecture to 32 Bit
+    export WINEARCH="win32"
+    # next step is to install Powershell Core 32 Bit on the Wine Machine
+    install_wine_git_portable.sh
+
+    #############################################
+    # install Powershell Core 64 Bit Version on Machine 2
+    #############################################
+    # set Wine Prefix for Machine 2 (64 Bit)
+    export WINEPREFIX=${HOME}/wine/wine64_machine_02
+    # set Architecture to 64 Bit
+    export WINEARCH="win64"
+    # next step is to install Powershell Core 64 Bit on the Wine Machine
+    /usr/lib/lib_bash_wine/005_001_install_wine_powershell_core.sh
 
 
 Running Commands on Wine

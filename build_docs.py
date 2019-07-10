@@ -16,7 +16,7 @@ import subprocess
 
 
 # CONSTANTS & PROJECT SPECIFIC FUNCTIONS
-codeclimate_link_hash = "2b2b6589f80589689c2b"
+codeclimate_link_hash = ""
 
 
 def project_specific(repository_slug, repository, repository_dashed):
@@ -54,33 +54,33 @@ def main(args):
     """
 
     logger.info('include the include blocks')
-    rst_inc(source='./docs/README_template.rst',
-            target='./docs/README_template_included.rst')
+    rst_inc(source='./.docs/README_template.rst',
+            target='./.docs/README_template_included.rst')
 
     logger.info('replace repository related strings')
-    rst_str_replace(source='./docs/README_template_included.rst',
-                    target='./docs/README_template_repo_replaced.rst',
+    rst_str_replace(source='./.docs/README_template_included.rst',
+                    target='./.docs/README_template_repo_replaced.rst',
                     old='{repository_slug}',
                     new=travis_repo_slug)
-    rst_str_replace(source='./docs/README_template_repo_replaced.rst',
-                    target='./docs/README_template_repo_replaced2.rst',
+    rst_str_replace(source='./.docs/README_template_repo_replaced.rst',
+                    target='./.docs/README_template_repo_replaced2.rst',
                     old='{repository}',
                     new=repository)
-    rst_str_replace(source='./docs/README_template_repo_replaced2.rst',
-                    target='./docs/README_template_repo_replaced3.rst',
+    rst_str_replace(source='./.docs/README_template_repo_replaced2.rst',
+                    target='./.docs/README_template_repo_replaced3.rst',
                     old='{repository_dashed}',
                     new=repository_dashed)
 
-    rst_str_replace(source='./docs/README_template_repo_replaced3.rst',
+    rst_str_replace(source='./.docs/README_template_repo_replaced3.rst',
                     target='./README.rst',
                     old='{codeclimate_link_hash}',
                     new=codeclimate_link_hash)
 
     logger.info('cleanup')
-    os.remove('./docs/README_template_included.rst')
-    os.remove('./docs/README_template_repo_replaced.rst')
-    os.remove('./docs/README_template_repo_replaced2.rst')
-    os.remove('./docs/README_template_repo_replaced3.rst')
+    os.remove('./.docs/README_template_included.rst')
+    os.remove('./.docs/README_template_repo_replaced.rst')
+    os.remove('./.docs/README_template_repo_replaced2.rst')
+    os.remove('./.docs/README_template_repo_replaced3.rst')
 
     logger.info('done')
     sys.exit(0)
