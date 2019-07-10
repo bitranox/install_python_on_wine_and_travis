@@ -47,13 +47,20 @@ Installation and Prerequisites
 ------------------------------
 
 Prerequisites when You install on Your local Machine:
-    - Ubuntu Xenial or newer
-    - download all .sh files and the directory lib_bash to Your home directory
-      and make them executable
+    - Ubuntu xenial, bionic, disco or newer
     - xvfb Service installed and running for headless machines
 
-If You want to install on Travis, just copy the travis.yml and .sh Files as well as the directory lib_bash to
-Your project directory, there should be only minimal adoption needed to the yml file.
+
+.. code-block:: bash
+
+    # local installation
+    sudo apt-get install git
+    sudo git clone https://github.com/bitranox/lib_bash_wine.git /usr/lib/lib_bash_wine
+    sudo chmod -R 0755 /usr/lib/lib_bash_wine
+    sudo chmod -R +x /usr/lib/lib_bash_wine/*.sh
+    sudo /usr/lib/lib_bash_wine/install_or_update_lib_bash_wine.sh
+
+If You want to install on Travis, just copy the travis.yml Your project directory, there should be only minimal adoption needed to the yml file.
 
 You might delete the codecov related entries if You dont have an account on codecov.
 
@@ -63,13 +70,13 @@ Install WINE
 .. code-block:: bash
 
 
-    # set the wine_release from Your command prompt
+    # set the wine_version from Your command prompt
     export wine_release="stable"     # for wine release stable, somehow old
     export wine_release="devel"      # for wine release development, recommended
     export wine_release="staging"    # for wine release staging, the newest version, might be unstable
 
     # next step will install wine - after that You will be able to set up 32 and 64 Bit Wine Machines
-    install_wine.sh
+    /usr/lib/lib_bash_wine/001_000_install_wine.sh
 
 
 Set up Wine Machine
@@ -94,7 +101,7 @@ The WINEPREFIX is the path to the Wine machine, defaults to /home/<user>/.wine
     # possible values: win10, win2k, win2k3, win2k8, win31, win7, win8, win81, win95, win98, winxp
     export wine_windows_version="win10"
     # next step is to set up the wine machine
-    install_wine_machine.sh
+    /usr/lib/lib_bash_wine/002_000_install_wine_machine.sh
 
     #############################################
     # Install Wine Machine 2 (64 Bit)
@@ -102,12 +109,12 @@ The WINEPREFIX is the path to the Wine machine, defaults to /home/<user>/.wine
     # set Wine Prefix for Machine 2 (64 Bit)
     export WINEPREFIX=${HOME}/wine/wine64_machine_02
     # set Architecture to 64 Bit
-    export WINEARCH=""
+    export WINEARCH="win64"
     # set wine_windows_version to report, defaults to "win10"
     # possible values: win10, win2k, win2k3, win2k8, win31, win7, win8, win81, win95, win98, winxp
     export wine_windows_version="win10"
     # next step is to set up the wine machine
-    install_wine_machine.sh
+    /usr/lib/lib_bash_wine/002_000_install_wine_machine.sh
 
 
 Install latest Python 2.7 on WINE
@@ -128,7 +135,7 @@ The path setting in the registry of the wine machine will be adapted to point to
     # set Architecture to 32 Bit
     export WINEARCH="win32"
     # next step is to install python 2.7 on the Wine Machine
-    install_win_python2_preinstalled.sh
+    /usr/lib/lib_bash_wine/003_000_install_win_python2_preinstalled.sh
 
     #############################################
     # install python 2.7 64 Bit Version on Machine 2
@@ -136,9 +143,9 @@ The path setting in the registry of the wine machine will be adapted to point to
     # set Wine Prefix for Machine 2 (64 Bit)
     export WINEPREFIX=${HOME}/wine/wine64_machine_02
     # set Architecture to 64 Bit
-    export WINEARCH=""
+    export WINEARCH="win64"
     # next step is to install python 2.7 on the Wine Machine
-    install_win_python2_preinstalled.sh
+    /usr/lib/lib_bash_wine/003_000_install_win_python2_preinstalled.sh
 
 
 
@@ -160,7 +167,7 @@ You CAN install Python 2.7 and 3.7 on the same WINE Machine, although the paths 
     # set Architecture to 32 Bit
     export WINEARCH="win32"
     # next step is to install python 3.7 on the Wine Machine
-    install_win_python3_preinstalled.sh
+    /usr/lib/lib_bash_wine/003_001_install_win_python3_preinstalled.sh
 
     #############################################
     # install python 3.7 64 Bit Version on Machine 2
@@ -170,7 +177,7 @@ You CAN install Python 2.7 and 3.7 on the same WINE Machine, although the paths 
     # set Architecture to 64 Bit
     export WINEARCH=""
     # next step is to install python 3.7 on the Wine Machine
-    install_win_python3_preinstalled.sh
+    /usr/lib/lib_bash_wine/003_001_install_win_python3_preinstalled.sh
 
 
 Install GIT on WINE
@@ -195,9 +202,9 @@ Install GIT on WINE
     # set Wine Prefix for Machine 2 (64 Bit)
     export WINEPREFIX=${HOME}/wine/wine64_machine_02
     # set Architecture to 64 Bit
-    export WINEARCH=""
+    export WINEARCH="win64"
     # next step is to install Git 64 Bit on the Wine Machine
-    install_wine_git_portable.sh
+    /usr/lib/lib_bash_wine/004_001_install_wine_git_portable.sh
 
 
 Running Commands on Wine
