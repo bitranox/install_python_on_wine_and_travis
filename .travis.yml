@@ -31,8 +31,9 @@ matrix:
       # this can be a security issue, check that You dont leak secrets here !
       filter_secrets: false
       before_install:
-          - chmod -R +x ./*.sh
-          - ./install_or_update_lib_bash.sh
+          - git clone https://github.com/bitranox/lib_bash.git /usr/lib/lib_bash
+          - chmod -R 0755 /usr/lib/lib_bash
+          - chmod -R +x /usr/lib/lib_bash/*.sh
           - /usr/lib/lib_bash/lib_retry.sh retry choco install python2
           - export PATH="/c/Python27:/c/Python27/Scripts:$PATH"
 
@@ -45,8 +46,9 @@ matrix:
       # this can be a security issue, check that You dont leak secrets here !
       filter_secrets: false
       before_install:
-          - chmod -R +x ./*.sh
-          - ./install_or_update_lib_bash.sh
+          - git clone https://github.com/bitranox/lib_bash.git /usr/lib/lib_bash
+          - chmod -R 0755 /usr/lib/lib_bash
+          - chmod -R +x /usr/lib/lib_bash/*.sh
           - /usr/lib/lib_bash/lib_retry.sh retry choco install python3
           - export PATH="/c/Python37:/c/Python37/Scripts:$PATH"
 
@@ -355,7 +357,6 @@ matrix:
 
 
 install:
-    - chmod -R +x ./*.sh             # make shellscripts executable
     - git clone https://github.com/bitranox/lib_bash_wine.git /usr/lib/lib_bash_wine
     - chmod -R 0755 /usr/lib/lib_bash_wine
     - ${sudo_command} chmod -R +x /usr/lib/lib_bash_wine/*.sh
