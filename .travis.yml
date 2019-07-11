@@ -349,7 +349,8 @@ matrix:
       language: sh
       name: "osX Python 3.7"
       python: "3.7"
-      osx_image: xcode10.2  # Python 3.7.2 running on macOS 10.14.3
+      # osx_image: xcode10.2  # Python 3.7.2 running on macOS 10.14.3
+      osx_image: xcode11.0  # Python 3.7.2 running on macOS 10.14.3
       env:
         # on osx pip and python points to python 2.7 - therefore we have to use pip3 and python3 here
         - pip_command="pip3"
@@ -357,7 +358,7 @@ matrix:
 
 install:
     # install lib_bash_wine - this installs also lib_bash
-    - if [[ -f /usr/bin/sudo ]]; then export sudo_command="sudo"; else export sudo_command=""; fi
+    - if [[ -f /usr/bin/sudo ]] | [[ -f /usr/local/bin/sudo ]]; then export sudo_command="sudo"; else export sudo_command=""; fi
     - ${sudo_command} git clone https://github.com/bitranox/lib_bash_wine.git /usr/lib/lib_bash_wine
     - ${sudo_command} chmod -R 0755 /usr/lib/lib_bash_wine
     - ${sudo_command} chmod -R +x /usr/lib/lib_bash_wine/*.sh
@@ -391,7 +392,7 @@ script:
     - if [[ "${setup_py_found}" == "True" ]]; then ${lib_bash_banner} "running setup.py --install-option test" && ${CMDPREFIX} ${pip_command} install ${github_master} --install-option test ; else ${lib_bash_banner_warning} "no setup.py found, no setup.py --install-option test" ; fi
     - if [[ "${setup_py_found}" == "True" ]]; then ${lib_bash_banner} "running pytest" && ${CMDPREFIX} ${python_command} -m pytest --pep8 --cov ; else ${lib_bash_banner_warning} "no setup.py found, no pytest" ; fi
     - if [[ "${mypy_static_typecheck}" == "True" ]]; then ${lib_bash_banner} "running mypy static typechecks" && ${CMDPREFIX} ${python_command} -m mypy -p ${REPOSITORY_NAME}; else ${lib_bash_banner_warning} "static typechecking disabled on this build" ;  fi
-    - if [[ -f build_docs.py ]] && [[ "${build_docs}" == "True" ]]; then ${lib_bash_banner} "Building Docs" && ${CMDPREFIX} ${python_command} build_docs.py ${TRAVIS_REPO_SLUG}; else ${lib_bash_banner_warning} "Builing Docs disabled on this build" ;  fi
+    - if [[ -f build_docs.py ]] && [[ "${build_docs}" == "True" ]]; then ${lib_bash_banner} "Building Docs" && ${CMDPREFIX} ${python_command} build_docs.py ${TRAVIS_REPO_SLUG}; else ${lib_bash_banner_warning} "Building Docs disabled on this build" ;  fi
 
 after_success:
     - ${CMDPREFIX} coverage report
