@@ -187,7 +187,7 @@ Install GIT on WINE
     # set Architecture to 64 Bit
     export WINEARCH="win64"
     # next step is to install Git 64 Bit on the Wine Machine
-    /usr/lib/lib_bash_wine/004_001_install_wine_git_portable.sh
+    /usr/lib/lib_bash_wine/004_000_install_wine_git_portable.sh
 
 
 Install Powershell Core on WINE
