@@ -355,7 +355,6 @@ matrix:
         - pip_command="pip3"
         - python_command="python3"
 
-
 install:
     # install lib_bash_wine - this installs also lib_bash
     - if [[ -f /usr/bin/sudo ]]; then export sudo_command="sudo"; else export sudo_command=""; fi
