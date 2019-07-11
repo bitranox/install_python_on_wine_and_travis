@@ -358,14 +358,14 @@ matrix:
 
 install:
     # install lib_bash_wine - this installs also lib_bash
-    - $(which sudo) git clone https://github.com/bitranox/lib_bash_wine.git /usr/lib/lib_bash_wine
-    - $(which sudo) chmod -R 0755 /usr/lib/lib_bash_wine
-    - $(which sudo) chmod -R +x /usr/lib/lib_bash_wine/*.sh
-    - $(which sudo) /usr/lib/lib_bash_wine/install_or_update_lib_bash_wine.sh
-    - export lib_bash_color="/usr/lib/lib_bash/lib_color.sh"
-    - export lib_bash_banner="/usr/lib/lib_bash/lib_helpers.sh banner"
-    - export lib_bash_banner_warning="/usr/lib/lib_bash/lib_helpers.sh banner_warning"
-    - export lib_bash_wine="/usr/lib/lib_bash_wine"
+    - $(which sudo) git clone https://github.com/bitranox/lib_bash_wine.git /usr/local/lib_bash_wine
+    - $(which sudo) chmod -R 0755 /usr/local/lib_bash_wine
+    - $(which sudo) chmod -R +x /usr/local/lib_bash_wine/*.sh
+    - $(which sudo) /usr/local/lib_bash_wine/install_or_update_lib_bash_wine.sh
+    - export lib_bash_color="/usr/local/lib_bash/lib_color.sh"
+    - export lib_bash_banner="/usr/local/lib_bash/lib_helpers.sh banner"
+    - export lib_bash_banner_warning="/usr/local/lib_bash/lib_helpers.sh banner_warning"
+    - export lib_bash_wine="/usr/local/lib_bash_wine"
 
     - export REPOSITORY_NAME=${TRAVIS_REPO_SLUG#*/} && ${lib_bash_color} clr_bold clr_green "Export Repository Name ${REPOSITORY_NAME}"
     - if [[ ${CMDPREFIX} == "wine" ]]; then ${lib_bash_wine}/001_000_install_wine.sh ; fi
