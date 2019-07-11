@@ -349,20 +349,19 @@ matrix:
       language: sh
       name: "osX Python 3.7"
       python: "3.7"
-      # osx_image: xcode10.2  # Python 3.7.2 running on macOS 10.14.3
-      osx_image: xcode11.0  # Python 3.7.2 running on macOS 10.14.3
+      osx_image: xcode10.2  # Python 3.7.2 running on macOS 10.14.3
       env:
         # on osx pip and python points to python 2.7 - therefore we have to use pip3 and python3 here
         - pip_command="pip3"
         - python_command="python3"
 
+
 install:
     # install lib_bash_wine - this installs also lib_bash
-    - if [[ -f /usr/bin/sudo ]] | [[ -f /usr/local/bin/sudo ]]; then export sudo_command="sudo"; else export sudo_command=""; fi
-    - ${sudo_command} git clone https://github.com/bitranox/lib_bash_wine.git /usr/lib/lib_bash_wine
-    - ${sudo_command} chmod -R 0755 /usr/lib/lib_bash_wine
-    - ${sudo_command} chmod -R +x /usr/lib/lib_bash_wine/*.sh
-    - ${sudo_command} /usr/lib/lib_bash_wine/install_or_update_lib_bash_wine.sh
+    - $(which sudo) git clone https://github.com/bitranox/lib_bash_wine.git /usr/lib/lib_bash_wine
+    - $(which sudo) chmod -R 0755 /usr/lib/lib_bash_wine
+    - $(which sudo) chmod -R +x /usr/lib/lib_bash_wine/*.sh
+    - $(which sudo) /usr/lib/lib_bash_wine/install_or_update_lib_bash_wine.sh
     - export lib_bash_color="/usr/lib/lib_bash/lib_color.sh"
     - export lib_bash_banner="/usr/lib/lib_bash/lib_helpers.sh banner"
     - export lib_bash_banner_warning="/usr/lib/lib_bash/lib_helpers.sh banner_warning"
