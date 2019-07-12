@@ -13,11 +13,11 @@ Install wine / python on Linux and/or Travis
 
 - Scripts and travis.yml file to run pytest and codecov on python on wine
 
-- travis .yml to install Windows Python 2.7 and 3.7 builds
+- travis .yml to install Windows 3.7 builds
 
-- travis .yml to install pypy Python 2.7 and 3.7 builds
+- travis .yml to install pypy 3.7 builds
 
-- travis .yml to install OsX Python 2.7 and 3.7 builds
+- travis .yml to install OsX Python 3.7 builds
 
 
 .. include:: ./tested_minimal.rst
@@ -27,7 +27,6 @@ Install wine / python on Linux and/or Travis
 - `Installation and Prerequisites`_
 - `Install WINE`_
 - `Set up Wine Machine`_
-- `Install latest Python 2.7 on WINE`_
 - `Install latest Python 3.7 on WINE`_
 - `Install GIT on WINE`_
 - `Install Powershell Core on WINE`_
@@ -38,6 +37,8 @@ Install wine / python on Linux and/or Travis
 - `Pull Request <https://github.com/{repository_slug}/blob/master/PULL_REQUEST_TEMPLATE.md>`_
 - `Code of Conduct <https://github.com/{repository_slug}/blob/master/CODE_OF_CONDUCT.md>`_
 - `License`_
+- `Changelog`_
+
 
 ----
 
@@ -100,45 +101,13 @@ The WINEPREFIX is the path to the Wine machine, defaults to /home/<user>/.wine
     /usr/local/lib_bash_wine/002_000_install_wine_machine.sh
 
 
-Install latest Python 2.7 on WINE
-=================================
-
-you should install a 32 Bit Python on a 32 Bit Wine Machine, and 64 Bit Python on a 64 Bit Wine Machine.
-Other combinations will probably not work.
-The path setting in the registry of the wine machine will be adapted to point to the python 2.7 directories
-
-
-.. code-block:: bash
-
-    #############################################
-    # install python 2.7 32 Bit Version on Machine 1
-    #############################################
-    # set Wine Prefix for Machine 1 (32 Bit)
-    export WINEPREFIX=${HOME}/wine/wine32_machine_01
-    # set Architecture to 32 Bit
-    export WINEARCH="win32"
-    # next step is to install python 2.7 on the Wine Machine
-    /usr/local/lib_bash_wine/003_000_install_win_python2_preinstalled.sh
-
-    #############################################
-    # install python 2.7 64 Bit Version on Machine 2
-    #############################################
-    # set Wine Prefix for Machine 2 (64 Bit)
-    export WINEPREFIX=${HOME}/wine/wine64_machine_02
-    # set Architecture to 64 Bit
-    export WINEARCH="win64"
-    # next step is to install python 2.7 on the Wine Machine
-    /usr/local/lib_bash_wine/003_000_install_win_python2_preinstalled.sh
-
-
-
 Install latest Python 3.7 on WINE
 =================================
 
 you should install a 32 Bit Python on a 32 Bit Wine Machine, and 64 Bit Python on a 64 Bit Wine Machine.
 Other combinations will probably not work.
 The path setting in the registry of the wine machine will be adapted to point to the python 3.7 directories
-You CAN install Python 2.7 and 3.7 on the same WINE Machine, although the paths will point to the version installed at last.
+You CAN install different Python Versions same WINE Machine, although the paths will point to the version installed at last.
 
 .. code-block:: bash
 
@@ -260,3 +229,6 @@ Contribute
 License
 -------
 .. include:: ./licence_mit.rst
+
+
+.. include:: ../CHANGES.rst
