@@ -5,6 +5,7 @@ import logging
 import os
 import sys
 
+
 if sys.version_info < (3, 5):
     logging.basicConfig(level=logging.INFO)
     main_logger = logging.getLogger('init')
