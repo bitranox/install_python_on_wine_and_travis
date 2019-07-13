@@ -3,15 +3,15 @@ Install wine / python on Linux and/or Travis
 
 .. include:: ./badges_minimal.rst
 
-- Scripts and travis.yml file to install wine on linux
+- installing `lib_bash_wine <https://github.com/bitranox/lib_bash_wine>`_ Scripts and travis.yml file to install wine on travis
 
-- Scripts and travis.yml file to install python on wine
+- install python on wine
 
-- Scripts and travis.yml file to install Git on Wine 32 Bit or 64 Bit
+- install Git on Wine 32 Bit or 64 Bit
 
-- Scripts and travis.yml file to install Powershell Core on Wine 32 Bit or 64 Bit
+- Powershell Core on Wine 32 Bit or 64 Bit
 
-- Scripts and travis.yml file to run pytest and codecov on python on wine
+- run pytest and codecov on python on wine
 
 - travis .yml to install Windows 3.7 builds
 
@@ -33,9 +33,9 @@ Install wine / python on Linux and/or Travis
 - `Running Commands on Wine`_
 - `Acknowledgements`_
 - `Contribute`_
-- `Report Issues <https://github.com/{repository_slug}/blob/master/ISSUE_TEMPLATE.md>`_
-- `Pull Request <https://github.com/{repository_slug}/blob/master/PULL_REQUEST_TEMPLATE.md>`_
-- `Code of Conduct <https://github.com/{repository_slug}/blob/master/CODE_OF_CONDUCT.md>`_
+- `Report Issues <https://github.com/bitranox/install_python_on_wine_and_travis/blob/master/ISSUE_TEMPLATE.md>`_
+- `Pull Request <https://github.com/bitranox/install_python_on_wine_and_travis/blob/master/PULL_REQUEST_TEMPLATE.md>`_
+- `Code of Conduct <https://github.com/bitranox/install_python_on_wine_and_travis/blob/master/CODE_OF_CONDUCT.md>`_
 - `License`_
 - `Changelog`_
 
@@ -119,7 +119,7 @@ You CAN install different Python Versions same WINE Machine, although the paths 
     # set Architecture to 32 Bit
     export WINEARCH="win32"
     # next step is to install python 3.7 on the Wine Machine
-    /usr/local/lib_bash_wine/003_001_install_win_python3_preinstalled.sh
+    /usr/local/lib_bash_wine/003_000_install_win_python3_preinstalled.sh
 
     #############################################
     # install python 3.7 64 Bit Version on Machine 2
@@ -129,7 +129,7 @@ You CAN install different Python Versions same WINE Machine, although the paths 
     # set Architecture to 64 Bit
     export WINEARCH=""
     # next step is to install python 3.7 on the Wine Machine
-    /usr/local/lib_bash_wine/003_001_install_win_python3_preinstalled.sh
+    /usr/local/lib_bash_wine/003_000_install_win_python3_preinstalled.sh
 
 
 Install GIT on WINE
@@ -146,7 +146,7 @@ Install GIT on WINE
     # set Architecture to 32 Bit
     export WINEARCH="win32"
     # next step is to install Git 32 Bit on the Wine Machine
-    install_wine_git_portable.sh
+    /usr/local/lib_bash_wine/004_000_install_wine_git_portable.sh
 
     #############################################
     # install Git 64 Bit Version on Machine 2
@@ -173,7 +173,7 @@ Install Powershell Core on WINE
     # set Architecture to 32 Bit
     export WINEARCH="win32"
     # next step is to install Powershell Core 32 Bit on the Wine Machine
-    install_wine_git_portable.sh
+    /usr/local/lib_bash_wine/005_000_install_wine_powershell_core.sh
 
     #############################################
     # install Powershell Core 64 Bit Version on Machine 2
@@ -183,7 +183,7 @@ Install Powershell Core on WINE
     # set Architecture to 64 Bit
     export WINEARCH="win64"
     # next step is to install Powershell Core 64 Bit on the Wine Machine
-    /usr/local/lib_bash_wine/005_001_install_wine_powershell_core.sh
+    /usr/local/lib_bash_wine/005_000_install_wine_powershell_core.sh
 
 
 Running Commands on Wine
