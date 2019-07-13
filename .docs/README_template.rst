@@ -1,7 +1,7 @@
 Install wine / python on Linux and/or Travis
 ============================================
 
-.. include:: ./badges_minimal.rst
+.. include:: ./badges_project_specific.rst
 
 - installing `lib_bash_wine <https://github.com/bitranox/lib_bash_wine>`_ Scripts and travis.yml file to install wine on travis
 
