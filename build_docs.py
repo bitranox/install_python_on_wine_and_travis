@@ -1,3 +1,4 @@
+# STDLIB Imports
 import argparse
 import errno
 import logging
@@ -9,11 +10,10 @@ if sys.version_info < (3, 5):
     main_logger = logging.getLogger('init')
     main_logger.info('only Python Versions from 3.5 are supported, exit with exitcode 0')
     sys.exit(0)
-
-from rst_include import *
-from rst_include.libs import lib_log
-import subprocess
-
+else:
+    # Project Imports
+    from rst_include import *
+    from rst_include.libs import lib_log
 
 # CONSTANTS & PROJECT SPECIFIC FUNCTIONS
 codeclimate_link_hash = ""
@@ -55,32 +55,30 @@ def main(args):
 
     logger.info('include the include blocks')
     rst_inc(source='./.docs/README_template.rst',
-            target='./.docs/README_template_included.rst')
+            target='./README.rst')
 
     logger.info('replace repository related strings')
-    rst_str_replace(source='./.docs/README_template_included.rst',
-                    target='./.docs/README_template_repo_replaced.rst',
+    rst_str_replace(source='./README.rst',
+                    target='',
                     old='{repository_slug}',
-                    new=travis_repo_slug)
-    rst_str_replace(source='./.docs/README_template_repo_replaced.rst',
-                    target='./.docs/README_template_repo_replaced2.rst',
+                    new=travis_repo_slug,
+                    inplace=True)
+    rst_str_replace(source='./README.rst',
+                    target='',
                     old='{repository}',
-                    new=repository)
-    rst_str_replace(source='./.docs/README_template_repo_replaced2.rst',
-                    target='./.docs/README_template_repo_replaced3.rst',
+                    new=repository,
+                    inplace=True)
+    rst_str_replace(source='./README.rst',
+                    target='',
                     old='{repository_dashed}',
-                    new=repository_dashed)
+                    new=repository_dashed,
+                    inplace=True)
 
-    rst_str_replace(source='./.docs/README_template_repo_replaced3.rst',
-                    target='./README.rst',
+    rst_str_replace(source='./README.rst',
+                    target='',
                     old='{codeclimate_link_hash}',
-                    new=codeclimate_link_hash)
-
-    logger.info('cleanup')
-    os.remove('./.docs/README_template_included.rst')
-    os.remove('./.docs/README_template_repo_replaced.rst')
-    os.remove('./.docs/README_template_repo_replaced2.rst')
-    os.remove('./.docs/README_template_repo_replaced3.rst')
+                    new=codeclimate_link_hash,
+                    inplace=True)
 
     logger.info('done')
     sys.exit(0)
