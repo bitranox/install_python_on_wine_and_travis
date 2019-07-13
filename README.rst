@@ -257,13 +257,15 @@ This software is licensed under the `MIT license <http://en.wikipedia.org/wiki/M
 Changelog
 =========
 
+1.0.2
+-----
+2019-07-13: drop python3.5 support
+
 1.0.1
 -----
-
 2019-07-13: drop python2 support
 
 1.0.0
 -----
-
 2019-04-12: Initial public release
 
