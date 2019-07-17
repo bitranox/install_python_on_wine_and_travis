@@ -106,4 +106,3 @@ ENV/
 
 # project
 build_docs.py
-.docs/
