@@ -104,9 +104,9 @@ The WINEPREFIX is the path to the Wine machine, defaults to /home/<user>/.wine
     export WINEPREFIX=${HOME}/wine/wine32_machine_01
     # set Architecture to 32 Bit
     export WINEARCH="win32"
-    # set wine_windows_version to report, defaults to "win10"
+    # set winetricks_windows_version to report, defaults to "win10"
     # possible values: win10, win2k, win2k3, win2k8, win31, win7, win8, win81, win95, win98, winxp
-    export wine_windows_version="win10"
+    export winetricks_windows_version="win10"
     # next step is to set up the wine machine
     /usr/local/lib_bash_wine/002_000_install_wine_machine.sh
 
@@ -117,9 +117,9 @@ The WINEPREFIX is the path to the Wine machine, defaults to /home/<user>/.wine
     export WINEPREFIX=${HOME}/wine/wine64_machine_02
     # set Architecture to 64 Bit
     export WINEARCH="win64"
-    # set wine_windows_version to report, defaults to "win10"
+    # set winetricks_windows_version to report, defaults to "win10"
     # possible values: win10, win2k, win2k3, win2k8, win31, win7, win8, win81, win95, win98, winxp
-    export wine_windows_version="win10"
+    export winetricks_windows_version="win10"
     # next step is to set up the wine machine
     /usr/local/lib_bash_wine/002_000_install_wine_machine.sh
 
