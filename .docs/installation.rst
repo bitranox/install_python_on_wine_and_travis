@@ -1,17 +1,52 @@
-Prerequisites when You install on Your local Machine:
-    - Ubuntu xenial, bionic, disco or newer
-    - xvfb Service installed and running for headless machines
-
+From source code:
 
 .. code-block:: bash
 
-    # local installation
-    sudo apt-get install git
-    sudo git clone https://github.com/bitranox/lib_bash_wine.git /usr/local/lib_bash_wine
-    sudo chmod -R 0755 /usr/local/lib_bash_wine
-    sudo chmod -R +x /usr/local/lib_bash_wine/*.sh
-    sudo /usr/local/lib_bash_wine/install_or_update.sh
+    # normal install
+    python setup.py install
+    # test without installing
+    python setup.py test
 
-If You want to install on Travis, just copy the travis.yml Your project directory, there should be only minimal adoption needed to the yml file.
+via pip latest Release:
 
-You might delete the codecov related entries if You dont have an account on codecov.
+.. code-block:: bash
+
+    # latest Release from pypi
+    pip install {repository}
+
+    # test without installing
+    pip install {repository} --install-option test
+
+via pip latest Development Version:
+
+.. code-block:: bash
+
+    # upgrade all dependencies regardless of version number (PREFERRED)
+    pip install --upgrade git+https://github.com/{repository_slug}.git --upgrade-strategy eager
+    # normal install
+    pip install --upgrade git+https://github.com/{repository_slug}.git
+    # test without installing
+    pip install git+https://github.com/{repository_slug}.git --install-option test
+
+via requirements.txt:
+
+.. code-block:: bash
+
+    # Insert following line in Your requirements.txt:
+    # for the latest Release:
+    {repository}
+    # for the latest Development Version :
+    git+https://github.com/{repository_slug}.git
+
+    # to install and upgrade all modules mentioned in requirements.txt:
+    pip install --upgrade -r /<path>/requirements.txt
+
+via python:
+
+.. code-block:: python
+
+    # for the latest Release
+    python -m pip install upgrade {repository}
+
+    # for the latest Development Version
+    python -m pip install upgrade git+https://github.com/{repository_slug}.git
