@@ -232,64 +232,89 @@ install:
 
     - if [[ ${build_docs} == "True" ]]; then
           ${lib_bash_banner} "install rst_include (Building Docs)";
-          ${CMDPREFIX} ${pip_command} install rst_include;
+          ${CMDPREFIX} ${pip_command} install git+https://github.com/bitranox/rst_include.git;
       fi
 
     - if [[ -f ./setup.py ]]; then
-          ${lib_bash_banner} "setup.py found, Installing Application";
+          ${lib_bash_banner} "setup.py found, Installing Application via pip install -e";
           ${CMDPREFIX} ${pip_command} install -e . ;
+              if [[ $? -eq 0 ]]; then
+                  ${lib_bash_banner} "pip install -e - OK";
+              else
+                  ${lib_bash_banner_warning} "pip install -e - FAILED";
+                  exit 1;
+              fi
+
       else
           ${lib_bash_banner_warning} "no setup.py found, skipping Installation";
       fi
 
 script:
     - if [[ -f ./setup.py ]]; then
-          ${lib_bash_banner} "running setup.py test";
-          ${CMDPREFIX} ${python_command} ./setup.py test;
-
-          ${lib_bash_banner} "running pip install --upgrade";
-          ${CMDPREFIX} ${pip_command} install ${github_master} --upgrade;
-
           ${lib_bash_banner} "Installing Pytest requirements";
-          ${CMDPREFIX} ${pip_command} install -r ./requirements.txt;
+          ${CMDPREFIX} ${pip_command} install -r ./requirements_pytest.txt;
           ${CMDPREFIX} ${pip_command} install codecov;
           ${CMDPREFIX} ${pip_command} install pytest-cov;
 
+          ${lib_bash_banner} "running setup.py test";
+          ${CMDPREFIX} ${python_command} ./setup.py test;
+              if [[ $? -eq 0 ]]; then
+                  ${lib_bash_banner} "setup.py test - OK";
+              else
+                  ${lib_bash_banner_warning} "setup.py test - FAILED";
+                  exit 1;
+              fi
+
+          ${lib_bash_banner} "running pip install --upgrade";
+          ${CMDPREFIX} ${pip_command} install ${github_master} --upgrade;
+              if [[ $? -eq 0 ]]; then
+                  ${lib_bash_banner} "pip install --upgrade - OK";
+              else
+                  ${lib_bash_banner_warning} "pip install --upgrade - FAILED";
+                  exit 1;
+              fi
+
           ${lib_bash_banner} "running pytest";
           ${CMDPREFIX} ${python_command} -m pytest --cov;
+              if [[ $? -eq 0 ]]; then
+                  ${lib_bash_banner} "pytest - OK";
+              else
+                  ${lib_bash_banner_warning} "pytest - FAILED";
+                  exit 1;
+              fi
 
           if [[ ${mypy_static_typecheck} == "True" ]]; then
               ${lib_bash_banner} "running mypy static typechecks --strict";
               ${CMDPREFIX} ${python_command} -m mypy -p ${REPOSITORY_NAME} --strict --no-warn-unused-ignores;
-              if [[ $? -eq 0 ]]; then
-                  ${lib_bash_banner} "mypy static typechecks --strict OK";
-              else
-                  ${lib_bash_banner_warning} "mypy static typechecks --strict FAILED";
-                  exit 1;
-              fi
+                  if [[ $? -eq 0 ]]; then
+                      ${lib_bash_banner} "mypy static typechecks --strict OK";
+                  else
+                      ${lib_bash_banner_warning} "mypy static typechecks --strict FAILED";
+                      exit 1;
+                  fi
           else
               ${lib_bash_banner_warning} "static typechecking disabled on this build";
           fi
-
-          if [[ ! -z ${commandline_registration_check} ]]; then
-              ${lib_bash_banner} "Testing Commandline Registration";
-              "${commandline_registration_check}";
-              if [[ $? -eq 0 ]]; then
-                  ${lib_bash_banner} "Commandline Registration OK";
-              else
-                  ${lib_bash_banner_warning} "Commandline Registration FAILED";
-                  exit 1;
-              fi
-          else
-              ${lib_bash_banner_warning} "Commandline Registration Check disabled on this build";
-          fi
-
       else
           ${lib_bash_banner_warning} "no setup.py found, skipping pip install with --install-option test";
           ${lib_bash_banner_warning} "no setup.py found, skipping pip install";
           ${lib_bash_banner_warning} "no setup.py found, skipping install pytest requirements";
           ${lib_bash_banner_warning} "no setup.py found, skipping pytest";
           ${lib_bash_banner_warning} "no setup.py found, skipping static typechecking";
+      fi
+
+    # Check Commandline Registration
+    - if [[ ! -z ${commandline_registration_check} ]]; then
+          ${lib_bash_banner} "Testing Commandline Registration";
+          bash -c "${commandline_registration_check}";
+          if [[ $? -eq 0 ]]; then
+              ${lib_bash_banner} "Commandline Registration - OK";
+          else
+              ${lib_bash_banner_warning} "Commandline Registration - FAILED";
+              exit 1;
+          fi
+      else
+          ${lib_bash_banner_warning} "Commandline Registration Check disabled on this build";
       fi
 
     # Bild Docs
@@ -314,12 +339,12 @@ script:
           ${CMDPREFIX} ${pip_command} install wheel > /dev/null 2>&1;
           ${CMDPREFIX} ${python_command} setup.py sdist bdist_wheel || ${lib_bash_banner_warning} "Building Wheels failed" 1>&2;
           ${CMDPREFIX} twine check dist/*;
-          if [[ $? -eq 0 ]]; then
-              ${lib_bash_banner} "PyPi Deployment would be OK";
-          else
-              ${lib_bash_banner_warning} "PyPi Deployment would fail";
-              exit 1;
-          fi
+              if [[ $? -eq 0 ]]; then
+                  ${lib_bash_banner} "PyPi Deployment would be OK";
+              else
+                  ${lib_bash_banner_warning} "PyPi Deployment would fail";
+                  exit 1;
+              fi
       else
           ${lib_bash_banner_warning} "Check PyPi Deployment disabled on this build" ;
       fi
