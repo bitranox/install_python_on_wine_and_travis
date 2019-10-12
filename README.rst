@@ -150,7 +150,7 @@ You CAN install different Python Versions same WINE Machine, although the paths 
     # set Wine Prefix for Machine 2 (64 Bit)
     export WINEPREFIX=${HOME}/wine/wine64_machine_02
     # set Architecture to 64 Bit
-    export WINEARCH=""
+    export WINEARCH="win64"
     # next step is to install python 3.7 on the Wine Machine
     /usr/local/lib_bash_wine/003_000_install_wine_python3_preinstalled.sh
 
