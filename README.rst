@@ -152,7 +152,7 @@ You CAN install different Python Versions same WINE Machine, although the paths 
     # set Architecture to 64 Bit
     export WINEARCH=""
     # next step is to install python 3.7 on the Wine Machine
-    /usr/local/lib_bash_wine/003_000_install_win_python3_preinstalled.sh
+    /usr/local/lib_bash_wine/003_000_install_wine_python3_preinstalled.sh
 
 
 Install GIT on WINE
