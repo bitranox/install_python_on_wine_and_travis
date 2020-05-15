@@ -5,7 +5,7 @@ Install wine / python on Linux and/or Travis
 
 .. |license| image:: https://img.shields.io/github/license/webcomics/pywine.svg
    :target: http://en.wikipedia.org/wiki/MIT_License
-.. |maintenance| image:: https://img.shields.io/maintenance/yes/2019.svg
+.. |maintenance| image:: https://img.shields.io/maintenance/yes/{last_update_yyyy}.svg
 .. |Build Status| image:: https://travis-ci.org/bitranox/install_python_on_wine_and_travis.svg?branch=master
    :target: https://travis-ci.org/bitranox/install_python_on_wine_and_travis
 .. |pyversion| image:: https://img.shields.io/badge/python-%3E%3D3.6-brightgreen.svg
