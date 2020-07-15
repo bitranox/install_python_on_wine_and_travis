@@ -11,7 +11,7 @@ import sys
 import lib_log_utils
 
 if sys.version_info < (3, 6):
-    lib_log_utils.log_handlers.add_stream_handler()
+    lib_log_utils.log_handlers.set_stream_handler()
     main_logger = logging.getLogger('init')
     main_logger.error('only Python Versions from 3.6 are supported')
     sys.exit(1)
@@ -91,7 +91,7 @@ def main(args):
 
 
 if __name__ == '__main__':
-    lib_log_utils.log_handlers.add_stream_handler()
+    lib_log_utils.log_handlers.set_stream_handler()
     main_logger = logging.getLogger('main')
     try:
         _args, _parser = parse_args()
